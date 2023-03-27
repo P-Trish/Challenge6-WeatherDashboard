@@ -32,7 +32,9 @@ margin-top: 10px;
 }
 
 #forecastResults {
-border: dashed 2px;
+border: dashed 1px;
+padding: 0;
+margin: 10px;
 }
 
 /* .columns {
