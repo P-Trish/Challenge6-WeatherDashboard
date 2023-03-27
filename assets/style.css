@@ -1,0 +1,40 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
+
+h1 {
+background-color: navy;
+background-image: linear-gradient(to right, lightblue, blue, navy);
+text-align: center;
+font-size: 40px;
+font-weight: bolder;
+color: white;
+}
+
+.citySearch {
+margin: 10px;
+} 
+
+#inputCity {
+margin: 10px 
+}
+
+
+#citySearchBtn {
+margin: 10px;
+background-color: rgb(18, 82, 231);
+color: white;
+border-radius: 3px;
+}
+
+#cityStats {
+border: solid black 2px;
+margin-top: 10px;
+}
+
+#forecastResults {
+border: dashed 2px;
+}
+
+/* .columns {
+    border: solid black 2px;
+} */
