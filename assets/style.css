@@ -32,9 +32,19 @@ margin-top: 10px;
 }
 
 #forecastResults {
-border: solid;
-padding: 0;
+padding: 5px;
+font-weight: bolder;
 margin: 10px;
+}
+
+.forecast {
+   margin: 10px; 
+   background-image: linear-gradient(to left, lightblue, blue, navy);
+}
+
+.day {
+    margin: 5px;
+    background-color: lightblue;
 }
 
 /* .columns {
