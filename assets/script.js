@@ -95,8 +95,8 @@ function getWeather (cityPlace) {
 
             dateEl.textContent = dateString;
             iconEl.setAttribute("src", `http://openweathermap.org/img/w/${icon}.png`)
-            tempEl.textContent = `temp: ${temp}f`;
-            windEl.textContent =  `wind: ${wind}mph`;
+            tempEl.textContent = `temp: ${temp} °F`;
+            windEl.textContent =  `wind: ${wind} MPH`;
             humidityEl.textContent  = `humidity: ${humidity}%`;
 
         }
