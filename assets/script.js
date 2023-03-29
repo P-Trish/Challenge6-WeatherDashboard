@@ -160,4 +160,6 @@ cityPicksList.addEventListener("click", function (event) {
 // will need to create & append TEMP, WIND, HUMIDITY + weather indication icon -- from API pull weather: icon, main; pull wind: gust, weather -> main: humidity
 
 
-
+// HOW TO GET CITY TO SHOW UP WHERE DATE SHOWS UP? 
+// WHY DON'T BUTTONS GET ADDED WHEN I TYPE A NEW CITY NAME? 
+// WANT BUTTONS TO APPEND IMMEDIATELY ON SEARCH RATHER THAN ON REFRESH
