@@ -19,6 +19,8 @@ var day5 = document.getElementById('day5');
 
 var fiveDays = [cityStats, day1, day2, day3, day4, day5];
 
+var savedCities = [];
+
 
 fetch('https://api.openweathermap.org/data/2.5/forecast?lat=34.1808&lon=-118.3090&appid=d1525879b423538907af5db6aa1d4658')
 .then(function (response){
@@ -34,14 +36,16 @@ citySearchBtn.addEventListener('click', () => {
 
 getWeather(cityPlace);
 
-
+console.log(cityPlace);
 // create element to append to page where the citySearch aside gets populated with user inputed cities in their search 
 // get city, push cityPlace to city, create buttonfor city,  set city
 // should be able to click city button again to pull up location weather 
 // when you getItem, store it as an array 
 
-localStorage.getItem('city');
-localStorage.setItem('city');
+// localStorage.getItem('city');
+
+savedCities.push(cityPlace);
+localStorage.setItem('city', JSON.stringify(savedCities));
 
 
  
@@ -121,12 +125,12 @@ function init() {
 }
 function generateHistory () {
     searchHistory.forEach((searchEntry)=> {
-        var cityPicksBtn = document.createElement("btn");
+        var cityPicksBtn = document.createElement("button");
         var cityPicksItem = document.createElement("li");
-        cityPicksItem.appendChild('cityPicksBtn');
-        cityPicksList.appendChild('cityPicksItem');
+        cityPicksItem.appendChild(cityPicksBtn);
+        cityPicksList.appendChild(cityPicksItem);
         cityPicksBtn.textContent = searchEntry;
-
+        cityPicksBtn.setAttribute("data-city", searchEntry)
 
     })
 }
@@ -144,7 +148,16 @@ fiveDays.forEach(day => {
     }
 });
 }
-
+ init();
+ cityPicksList.addEventListener("click", function(event){
+    console.log(event.target)
+    if (event.target.matches("button")){
+        var city = event.target.getAttribute ("data-city")
+        clearAll();
+        getWeather(city);
+    }
+ })
+ 
 // will need to create & append TEMP, WIND, HUMIDITY + weather indication icon -- from API pull weather: icon, main; pull wind: gust, weather -> main: humidity
 
 
