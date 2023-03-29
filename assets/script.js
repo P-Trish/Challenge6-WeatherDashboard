@@ -1,11 +1,13 @@
-var date = dayjs();
-$('#cityStats').text(date.format ('ddd, MM/ DD/ YYYY hh:mm A'));
 
 var inputCity = document.getElementById('inputCity');
 
 var citySearchBtn = document.getElementById('citySearchBtn');
 
-const timeHours = [8, 16, 24, 32, 39];
+var futureDays = document.getElementById('futureDays');
+
+var cityStats = document.getElementById('cityStats');
+
+const timeHours = [0, 8, 16, 24, 32, 39];
 
 var day1 = document.getElementById('day1');
 var day2 = document.getElementById('day2');
@@ -13,7 +15,7 @@ var day3 = document.getElementById('day3');
 var day4 = document.getElementById('day4');
 var day5 = document.getElementById('day5');
 
-var fiveDays = [day1, day2, day3, day4, day5];
+var fiveDays = [cityStats, day1, day2, day3, day4, day5];
 
 // will eventually need to create a variable for geolocation to pull lat and longitude in api weather fetch 
 // create variable breaking up api URL and calling it back together with fetched data of location coordinates and city 
@@ -28,7 +30,24 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?lat=34.1808&lon=-118.309
 
 citySearchBtn.addEventListener('click', () => {
     var cityPlace = inputCity.value;
+    clearAll();
 
+getWeather(cityPlace);
+
+
+    // localStorage.setItem('city', cityPlace);
+    // console.log (cityPlace)
+
+    // var place = localStorage.getItem ('city');
+    // console.log('city');
+
+// create element to append to page where the citySearch aside gets populated with user inputed cities in their search 
+
+
+});
+
+function getWeather (cityPlace) {
+      
     var weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityPlace}&appid=d1525879b423538907af5db6aa1d4658`;
 
     fetch(weatherUrl)
@@ -46,38 +65,78 @@ citySearchBtn.addEventListener('click', () => {
             console.log(data, "TEST AGAIN");
         
             for (i=0; i <timeHours.length; i++) {
-                fiveDays [i].textContent = data.list[timeHours[i]].dt
-            }
-            // timeHours.for ((day) => {
-            //     console.log(day);
+                var date = new Date (data.list[timeHours[i]].dt*1000);
+                var dateString = `${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()}`;
+                var icon = data.list[timeHours[i]].weather[0].icon;
+                var temp = data.list[timeHours[i]].main.temp;
+                var wind = data.list[timeHours[i]].wind.speed;
+                var humidity = data.list[timeHours[i]].main.humidity;
 
+            
+         
+            var dateEl = document.createElement("h4");
+            var iconEl = document.createElement ("img");
+            var listEl = document.createElement("ul");
+            var tempEl = document.createElement("li");
+            var windEl = document.createElement("li");
+            var humidityEl = document.createElement("li");
 
-            // })
-        });
+    
+
+            fiveDays[i].appendChild(dateEl);
+            fiveDays[i].appendChild(iconEl);
+            fiveDays[i].appendChild(listEl);
+            listEl.appendChild(tempEl);
+            listEl.appendChild(windEl);
+            listEl.appendChild(humidityEl);
+
+            dateEl.textContent = dateString;
+            iconEl.setAttribute("src", `http://openweathermap.org/img/w/${icon}.png`)
+            tempEl.textContent = `temp: ${temp}f`;
+            windEl.textContent =  `wind: ${wind}mph`;
+            humidityEl.textContent  = `humidity: ${humidity}%`;
+
+        }
+            futureDays.style.visibility = "visible";
+    });
     
     });
 
+
+}
+
+var searchHistory = [];
+function init() {
+    var storeData = JSON.parse(localStorage.getItem('city'));
+    if (storeData != null) {
+        searchHistory = storeData;
+    generateHistory();
+    }
+
+
     
+}
+function generateHistory () {
+    searchHistory.forEach((searchEntry)=> {
+
+    })
+}
 
 
-
-    localStorage.setItem('city', cityPlace);
-    console.log (cityPlace)
-
-    var place = localStorage.getItem ('city');
-    console.log('city');
-
-// create element to append to page where the citySearch aside gets populated with user inputed cities in their search 
-
-// remember this: i created an element here to be appended later 
-var cityInputEl = $('<button>');
-
-
+function clearAll() {
+fiveDays.forEach(day => {
+    if (day.children.length){
+        var clear = day.children.length;
+        for (i=0; i<clear; i++) {
+            console.log(day.children[0]);
+            day.removeChild(day.children[0]);
+          
+        }
+    }
 });
+}
 
 // will need to create & append TEMP, WIND, HUMIDITY + weather indication icon -- from API pull weather: icon, main; pull wind: gust, weather -> main: humidity
 
 
-//    var temp = data.list[i].main.temp,
-//    var wind = data.list[i].weather.icon ,
-//    var humidity = data.list[i].main.humidity,
+
