@@ -7,6 +7,8 @@ var futureDays = document.getElementById('futureDays');
 
 var cityStats = document.getElementById('cityStats');
 
+var cityPicksList = document.getElementById('cityPicksList');
+
 const timeHours = [0, 8, 16, 24, 32, 39];
 
 var day1 = document.getElementById('day1');
@@ -17,8 +19,6 @@ var day5 = document.getElementById('day5');
 
 var fiveDays = [cityStats, day1, day2, day3, day4, day5];
 
-// will eventually need to create a variable for geolocation to pull lat and longitude in api weather fetch 
-// create variable breaking up api URL and calling it back together with fetched data of location coordinates and city 
 
 fetch('https://api.openweathermap.org/data/2.5/forecast?lat=34.1808&lon=-118.3090&appid=d1525879b423538907af5db6aa1d4658')
 .then(function (response){
@@ -35,13 +35,16 @@ citySearchBtn.addEventListener('click', () => {
 getWeather(cityPlace);
 
 
-    // localStorage.setItem('city', cityPlace);
-    // console.log (cityPlace)
-
-    // var place = localStorage.getItem ('city');
-    // console.log('city');
-
 // create element to append to page where the citySearch aside gets populated with user inputed cities in their search 
+// get city, push cityPlace to city, create buttonfor city,  set city
+// should be able to click city button again to pull up location weather 
+// when you getItem, store it as an array 
+
+localStorage.getItem('city');
+localStorage.setItem('city');
+
+
+ 
 
 
 });
@@ -118,10 +121,16 @@ function init() {
 }
 function generateHistory () {
     searchHistory.forEach((searchEntry)=> {
+        var cityPicksBtn = document.createElement("btn");
+        var cityPicksItem = document.createElement("li");
+        cityPicksItem.appendChild('cityPicksBtn');
+        cityPicksList.appendChild('cityPicksItem');
+        cityPicksBtn.textContent = searchEntry;
+
 
     })
 }
-
+// when they click on search new button is added to list 
 
 function clearAll() {
 fiveDays.forEach(day => {
