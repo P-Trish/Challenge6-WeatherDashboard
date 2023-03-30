@@ -29,11 +29,13 @@ The user can type in a city into the search input of the page to retrieve the we
 
 ## Credits
 
-Special thanks to Emma Daily, Michael Radar, and Michael Huang for their continued advice and cameraderie when we work on homework together.
+Special thanks to Emma Daily, Michael Radar, and Michael Huang for their continued advice and cameraderie when we work on homework together. Additionally, I'd like to thank my cousin Ryan who continually tutors and encourages me while I code.  
 
 I'd also like to thank my instructor Bryan Swarthout for his guidance with local storage for storing persistent data.
 
 Bulma was used to style this weather dashboard and jQuery was used within the script.js.
+
+DayJs was used to retrieve the current time on the page. 
 
 ## License
 
