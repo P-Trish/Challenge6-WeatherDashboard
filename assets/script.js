@@ -37,18 +37,9 @@ citySearchBtn.addEventListener('click', () => {
     getWeather(cityPlace);
 
     console.log(cityPlace);
-    // create element to append to page where the citySearch aside gets populated with user inputed cities in their search 
-    // get city, push cityPlace to city, create buttonfor city,  set city
-    // should be able to click city button again to pull up location weather 
-    // when you getItem, store it as an array 
-
-    // localStorage.getItem('city');
-
+  
     savedCities.push(cityPlace);
     localStorage.setItem('city', JSON.stringify(savedCities));
-
-
-
 
 
 });
@@ -75,11 +66,13 @@ function getWeather(cityPlace) {
                         var date = new Date(data.list[timeHours[i]].dt * 1000);
                         var dateString = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
                         
+                        // var currentCity = data.list [timeHours[i]].city.name;
                         var icon = data.list[timeHours[i]].weather[0].icon;
                         var temp = data.list[timeHours[i]].main.temp;
                         var wind = data.list[timeHours[i]].wind.speed;
                         var humidity = data.list[timeHours[i]].main.humidity;
 
+                        // var currentCityEl = document.createElement("h3");
                         var dateEl = document.createElement("h4");
                         var iconEl = document.createElement("img");
                         var listEl = document.createElement("ul");
@@ -88,10 +81,10 @@ function getWeather(cityPlace) {
                         var humidityEl = document.createElement("li");
 
 
-
                         fiveDays[i].appendChild(dateEl);
                         fiveDays[i].appendChild(iconEl);
                         fiveDays[i].appendChild(listEl);
+                        // listEl.appendChild(currentCityEl);
                         listEl.appendChild(tempEl);
                         listEl.appendChild(windEl);
                         listEl.appendChild(humidityEl);
@@ -101,6 +94,7 @@ function getWeather(cityPlace) {
                         tempEl.textContent = `temp: ${temp} °F`;
                         windEl.textContent = `wind: ${wind} MPH`;
                         humidityEl.textContent = `humidity: ${humidity}%`;
+                        // currentCityEl.textContent = `${currentCity}`;
 
                     }
                     futureDays.style.visibility = "visible";
@@ -117,6 +111,7 @@ function init() {
     if (storeData != null) {
         searchHistory = storeData;
         generateHistory();
+        
     }
 
 
@@ -133,7 +128,7 @@ function generateHistory() {
 
     })
 }
-// when they click on search new button is added to list 
+// when they click on search new button is added to list it is cleared.  
 
 function clearAll() {
     fiveDays.forEach(day => {
@@ -154,6 +149,7 @@ cityPicksList.addEventListener("click", function (event) {
         var city = event.target.getAttribute("data-city")
         clearAll();
         getWeather(city);
+        event.preventDefault();
     }
 })
 
@@ -163,3 +159,12 @@ cityPicksList.addEventListener("click", function (event) {
 // HOW TO GET CITY TO SHOW UP WHERE DATE SHOWS UP? 
 // WHY DON'T BUTTONS GET ADDED WHEN I TYPE A NEW CITY NAME? 
 // WANT BUTTONS TO APPEND IMMEDIATELY ON SEARCH RATHER THAN ON REFRESH
+// I WANT CITY TO BE ADDED TO SEARCH HISTORY IMMEDIATELY WHEN SOMEONE TYPES A NEW CITY IN THE INPUT AREA 
+
+
+  // create element to append to page where the citySearch aside gets populated with user inputed cities in their search 
+    // get city, push cityPlace to city, create buttonfor city,  set city
+    // should be able to click city button again to pull up location weather 
+    // when you getItem, store it as an array 
+
+    // localStorage.getItem('city');
