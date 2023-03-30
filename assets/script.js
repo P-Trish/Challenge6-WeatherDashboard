@@ -1,3 +1,5 @@
+var currentTime = dayjs();
+$('#cityStats').text(currentTime.format('hh:mm A'));
 
 var inputCity = document.getElementById('inputCity');
 
@@ -21,6 +23,7 @@ var fiveDays = [cityStats, day1, day2, day3, day4, day5];
 
 var savedCities = [];
 
+// fetched Open Weather API
 
 fetch('https://api.openweathermap.org/data/2.5/forecast?lat=34.1808&lon=-118.3090&appid=d1525879b423538907af5db6aa1d4658')
     .then(function (response) {
@@ -29,6 +32,11 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?lat=34.1808&lon=-118.309
     .then(function (data) {
         console.log(data);
     });
+
+// when user clicks the button, get weather is called to provide weather info and saves the history of the cities they looked up in a buttons list so the user can go back and refer to past cities they've searched.
+
+// when you getItem, store it as an array
+
 
 citySearchBtn.addEventListener('click', (event) => {
     event.preventDefault();
@@ -47,6 +55,9 @@ citySearchBtn.addEventListener('click', (event) => {
     generateHistory();
 
 });
+
+// Create & append TEMP, WIND, HUMIDITY + weather indication icon -- from API pull weather: icon, main; pull wind: gust, weather -> main: humidity
+// create element to append to page where the citySearch aside gets populated with user inputed cities in their search
 
 function getWeather(cityPlace) {
 
@@ -168,19 +179,3 @@ cityPicksList.addEventListener("click", function (event) {
         getWeather(city);
     }
 })
-
-// will need to create & append TEMP, WIND, HUMIDITY + weather indication icon -- from API pull weather: icon, main; pull wind: gust, weather -> main: humidity
-
-
-// HOW TO GET CITY TO SHOW UP WHERE DATE SHOWS UP? 
-// WHY DON'T BUTTONS GET ADDED WHEN I TYPE A NEW CITY NAME? 
-// WANT BUTTONS TO APPEND IMMEDIATELY ON SEARCH RATHER THAN ON REFRESH
-// I WANT CITY TO BE ADDED TO SEARCH HISTORY IMMEDIATELY WHEN SOMEONE TYPES A NEW CITY IN THE INPUT AREA 
-
-
-  // create element to append to page where the citySearch aside gets populated with user inputed cities in their search
-    // get city, push cityPlace to city, create buttonfor city,  set city
-    // should be able to click city button again to pull up location weather
-    // when you getItem, store it as an array
-
-    // localStorage.getItem('city');
