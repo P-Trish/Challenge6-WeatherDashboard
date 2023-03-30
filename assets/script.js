@@ -41,6 +41,8 @@ citySearchBtn.addEventListener('click', () => {
     savedCities.push(cityPlace);
     localStorage.setItem('city', JSON.stringify(savedCities));
 
+    clearHistory();
+    generateHistory();
 
 });
 
@@ -66,13 +68,20 @@ function getWeather(cityPlace) {
                         var date = new Date(data.list[timeHours[i]].dt * 1000);
                         var dateString = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
                         
-                        // var currentCity = data.list [timeHours[i]].city.name;
+                        if (i===0) {
+                            var currentCity = data.city.name;  
+                            var currentCityEl = document.createElement("h3");
+                            fiveDays[i].appendChild(currentCityEl);
+                            currentCityEl.textContent = `${currentCity}`;
+
+                        }
+                        
                         var icon = data.list[timeHours[i]].weather[0].icon;
                         var temp = data.list[timeHours[i]].main.temp;
                         var wind = data.list[timeHours[i]].wind.speed;
                         var humidity = data.list[timeHours[i]].main.humidity;
 
-                        // var currentCityEl = document.createElement("h3");
+                    
                         var dateEl = document.createElement("h4");
                         var iconEl = document.createElement("img");
                         var listEl = document.createElement("ul");
@@ -84,7 +93,6 @@ function getWeather(cityPlace) {
                         fiveDays[i].appendChild(dateEl);
                         fiveDays[i].appendChild(iconEl);
                         fiveDays[i].appendChild(listEl);
-                        // listEl.appendChild(currentCityEl);
                         listEl.appendChild(tempEl);
                         listEl.appendChild(windEl);
                         listEl.appendChild(humidityEl);
@@ -94,8 +102,7 @@ function getWeather(cityPlace) {
                         tempEl.textContent = `temp: ${temp} °F`;
                         windEl.textContent = `wind: ${wind} MPH`;
                         humidityEl.textContent = `humidity: ${humidity}%`;
-                        // currentCityEl.textContent = `${currentCity}`;
-
+                        
                     }
                     futureDays.style.visibility = "visible";
                 });
@@ -105,11 +112,11 @@ function getWeather(cityPlace) {
 
 }
 
-var searchHistory = [];
+
 function init() {
     var storeData = JSON.parse(localStorage.getItem('city'));
     if (storeData != null) {
-        searchHistory = storeData;
+        savedCities = storeData;
         generateHistory();
         
     }
@@ -118,7 +125,7 @@ function init() {
 
 }
 function generateHistory() {
-    searchHistory.forEach((searchEntry) => {
+    savedCities.forEach((searchEntry) => {
         var cityPicksBtn = document.createElement("button");
         var cityPicksItem = document.createElement("li");
         cityPicksItem.appendChild(cityPicksBtn);
@@ -142,6 +149,13 @@ function clearAll() {
         }
     });
 }
+
+function clearHistory(){
+    while (cityPicksList.children.length){
+        cityPicksList.removeChild(cityPicksList.children[0]);
+    }
+}
+
 init();
 cityPicksList.addEventListener("click", function (event) {
     console.log(event.target)
