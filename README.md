@@ -25,7 +25,7 @@ The user can type in a city into the search input of the page to retrieve the we
 
 ![alt text](/assets/Images/WeatherApp1.png)
 
-![alt text](/assets/Images/WeatherApp1.2.png)
+![alt text](/assets/Images/WeatherApp2.png)
 
 ## Credits
 
