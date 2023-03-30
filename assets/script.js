@@ -30,14 +30,16 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?lat=34.1808&lon=-118.309
         console.log(data);
     });
 
-citySearchBtn.addEventListener('click', () => {
+citySearchBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+
     var cityPlace = inputCity.value;
     clearAll();
 
     getWeather(cityPlace);
 
     console.log(cityPlace);
-  
+
     savedCities.push(cityPlace);
     localStorage.setItem('city', JSON.stringify(savedCities));
 
@@ -67,21 +69,21 @@ function getWeather(cityPlace) {
                     for (i = 0; i < timeHours.length; i++) {
                         var date = new Date(data.list[timeHours[i]].dt * 1000);
                         var dateString = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-                        
-                        if (i===0) {
-                            var currentCity = data.city.name;  
+
+                        if (i === 0) {
+                            var currentCity = data.city.name;
                             var currentCityEl = document.createElement("h3");
                             fiveDays[i].appendChild(currentCityEl);
                             currentCityEl.textContent = `${currentCity}`;
 
                         }
-                        
+
                         var icon = data.list[timeHours[i]].weather[0].icon;
                         var temp = data.list[timeHours[i]].main.temp;
                         var wind = data.list[timeHours[i]].wind.speed;
                         var humidity = data.list[timeHours[i]].main.humidity;
 
-                    
+
                         var dateEl = document.createElement("h4");
                         var iconEl = document.createElement("img");
                         var listEl = document.createElement("ul");
@@ -102,7 +104,7 @@ function getWeather(cityPlace) {
                         tempEl.textContent = `temp: ${temp} °F`;
                         windEl.textContent = `wind: ${wind} MPH`;
                         humidityEl.textContent = `humidity: ${humidity}%`;
-                        
+
                     }
                     futureDays.style.visibility = "visible";
                 });
@@ -118,7 +120,7 @@ function init() {
     if (storeData != null) {
         savedCities = storeData;
         generateHistory();
-        
+
     }
 
 
@@ -150,20 +152,20 @@ function clearAll() {
     });
 }
 
-function clearHistory(){
-    while (cityPicksList.children.length){
+function clearHistory() {
+    while (cityPicksList.children.length) {
         cityPicksList.removeChild(cityPicksList.children[0]);
     }
 }
 
 init();
 cityPicksList.addEventListener("click", function (event) {
+    event.preventDefault();
     console.log(event.target)
     if (event.target.matches("button")) {
         var city = event.target.getAttribute("data-city")
         clearAll();
         getWeather(city);
-        event.preventDefault();
     }
 })
 
@@ -176,9 +178,9 @@ cityPicksList.addEventListener("click", function (event) {
 // I WANT CITY TO BE ADDED TO SEARCH HISTORY IMMEDIATELY WHEN SOMEONE TYPES A NEW CITY IN THE INPUT AREA 
 
 
-  // create element to append to page where the citySearch aside gets populated with user inputed cities in their search 
+  // create element to append to page where the citySearch aside gets populated with user inputed cities in their search
     // get city, push cityPlace to city, create buttonfor city,  set city
-    // should be able to click city button again to pull up location weather 
-    // when you getItem, store it as an array 
+    // should be able to click city button again to pull up location weather
+    // when you getItem, store it as an array
 
     // localStorage.getItem('city');

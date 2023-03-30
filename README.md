@@ -1,53 +1,38 @@
 # Challenge6-WeatherDashboard
 
-
 ## Description
 
+Challenge 6 in the Full-Stack Bootcamp was to create a Weather Dashboard. The motivation for this weather dashboard was to take on the user story of a traveler such that,
+"AS A traveler
+I WANT to see the weather outlook for multiple cities
+SO THAT I can plan a trip accordingly."
 
+This project was built so that the user, possibly a traveler could look up the the current weather of a city they input into the search bar, and also receive a 5-day weather forecast for future reference or travel planning.
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+This weather dashboard solves the problem for users that need easy access to the weather of a city they are visiting or are currently in to plan and better inform their decision making that could be affected by the weather. The instant information is up-to-date for the current day in which they are searching as well as provides the forecast for the next 5 days. This weather app provides information such as the temperature, wind speed, and humidity. The information is easily accessible and all in one place for the user.
 
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
-
-## Table of Contents (Optional)
-
-If your README is long, add a table of contents to make it easy for users to find what they need.
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Credits](#credits)
-- [License](#license)
+By creating this weather dashboard, I learned how to apply what I've been taught about calling/fetching an API and getting specific information in the DOM to be displayed on the page. My knowledge of HTML and usage of a new CSS framework were further solidified by creating the structure of the page. I learned how to read documentation and pull what I need to create this dynamic and interactive webapge.
 
 ## Installation
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+N/A
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+The user can type in a city into the search input of the page to retrieve the weather forecast for the current day and the next five days. Additionally, that city is added to search history underneath the search bar in case the user would like to reference that city's weather again. Included in the current weather information and 5-day forecast retreived is the city name, date, an icon that represents the weather conditions, the temperature, wind speed, and humidity. If the user clicks a city that is in the search history, that city's current weather and future conditions are brought back again.
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+![alt text](/assets/Images/WeatherApp1.png)
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+![alt text](/assets/Images/WeatherApp1.2.png)
 
 ## Credits
 
-List your collaborators, if any, with links to their GitHub profiles.
+Special thanks to Emma Daily, Michael Radar, and Michael Huang for their continued advice and cameraderie when we work on homework together.
 
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
+I'd also like to thank my instructor Bryan Swarthout for his guidance with local storage for storing persistent data.
 
-If you followed tutorials, include links to those here as well.
+Bulma was used to style this weather dashboard and jQuery was used within the script.js.
 
 ## License
 
 N/A
-
-## Features
-
-If your project has a lot of features, list them here.
-

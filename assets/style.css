@@ -49,15 +49,12 @@ color: white;
 }
 
 .forecast {
-   margin: 10px; 
-   background-image: radial-gradient(lightblue, navy);
+margin: 10px; 
+background-image: radial-gradient(lightblue, navy);
 }
 
 .day {
-    margin: 5px;
-    background-color: lightblue;
+margin: 5px;
+background-color: lightblue;
 }
 
-/* .columns {
-    border: solid black 2px;
-} */
